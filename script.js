@@ -14,10 +14,16 @@ function getTime(){
     displayTimer(total);
 }
 function displayTimer(timeInSeconds){
+    timers.style.display="block";
+    timers.style.display="flex";
  const h=timeInSeconds/3600;
-   hoursOfTimer.innerText=h;
+ if(h>0){
+    hoursOfTimer.innerText=h+":";
+ }
+   
  const m=timeInSeconds/60;
   minuteOfTimer.innerText=m;
   
+
 }
  
