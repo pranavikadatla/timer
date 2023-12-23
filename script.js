@@ -16,14 +16,44 @@ function getTime(){
 function displayTimer(timeInSeconds){
     timers.style.display="block";
     timers.style.display="flex";
- const h=timeInSeconds/3600;
- if(h>0){
-    hoursOfTimer.innerText=h+":";
+ if(timeInSeconds>=3600){
+    var h1=Math.floor(timeInSeconds/3600);
+    var h2=timeInSeconds%3600;
+    hoursOfTimer.innerText="0"+h1+":";
+    var m1=Math.floor(h1/60);
+    minuteOfTimer.innerText=m1+":";
+    var s1=m1%60;
+ secondsOfTmer.innerText=s1;
+ startTimer(s1);
  }
-   
- const m=timeInSeconds/60;
-  minuteOfTimer.innerText=m;
+ else{
+    hoursOfTimer.innerText="00"+":";
+    var m1=Math.floor(timeInSeconds/60);
+    minuteOfTimer.innerText=m1+":";
+    var s1=Math.floor(m1/60);
+ secondsOfTmer.innerText=s1;
+ startTimer(s1);
+ }
   
 
+}
+function startTimer(time){
+    let timerId=setInterval(()=>{
+        if(time===0){
+          if(minutes>0){
+            minutes--;
+            seconds=60;
+          }
+          if(hours>0){
+            hours--;
+            minutes++;
+          }
+          if(minutes==0&&hours==0&&seconds==0){
+            clearInterval(timerId);
+            timers.innerText="time's Up";
+          }
+        }
+
+    },1000);
 }
  
